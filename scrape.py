@@ -13,7 +13,7 @@ def find_school_princeton_page(name):
     while True:
         poss_link = poss_heading.a
         poss_name = poss_link.string
-        if input("Is %s the school you are looking for?" % poss_name) == 'y':
+        if input("Is %s the school you are looking for? " % poss_name) == 'y':
             return get_soup('https://www.princetonreview.com' + poss_link['href']), poss_name
         poss_heading = poss_heading.find_next('h2', class_='margin-top-none')
 
@@ -31,4 +31,9 @@ def nth_sibling(tag, num):
 
 
 def get_tag_after(soup, text):
-    return nth_sibling(soup.find(text_matches(text)), 2)
+    match = soup.find(text_matches(text))
+
+    if match:
+        return nth_sibling(match, 2)
+
+    return None
