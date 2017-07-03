@@ -18,22 +18,9 @@ def find_school_princeton_page(name):
         poss_heading = poss_heading.find_next('h2', class_='margin-top-none')
 
 
-def text_matches(text):
-    return lambda tag: tag.string == text
-
-
 def nth_sibling(tag, num):
     i = 0
     for sibling in tag.next_siblings:
         i += 1
         if i == num:
             return sibling
-
-
-def get_tag_after(soup, text):
-    match = soup.find(text_matches(text))
-
-    if match:
-        return nth_sibling(match, 2)
-
-    return None
