@@ -13,9 +13,8 @@ def clean_num(num_str):
     try:
         return float(cleaned_str)
     except ValueError:
-        print(num_str + " not parsed")
+        print(num_str + " not parsed")  # TODO: add context in store (handle error there)?
         return np.nan
-
 
 
 def store(soup, name, df, attr_names):
@@ -27,6 +26,4 @@ def store(soup, name, df, attr_names):
             data.append(clean_num(tag.string))
         else:
             data.append(np.nan)
-    #  data.append(clean_int(scrape.get_tag_after(soup, 'Applicants').string))   # Applicants
-    #  data.append(clean_int(scrape.get_tag_after(soup, 'Total Faculty').string))  # Faculty
     df.loc[name] = data
