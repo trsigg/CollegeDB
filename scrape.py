@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen, quote
 import numpy as np
+import re
 
 
 def get_soup(url):
@@ -23,16 +24,41 @@ def identity(x):
     return x
 
 
-def get_data_by_attrs(soup, attrs, relationship=identity, transform=identity, default=np.nan, tag_type=None):
+def unpack(obj):
+    if hasattr(obj, '__iter__'):
+        lst = list()
+        for x in obj:
+            lst.extend(unpack(x))
+        return lst
+    else:
+        return [obj]
+
+
+def tag_text_matches(pattern):
+    def matches(tag):
+        if tag and tag.string:
+            return re.search(pattern, tag.string)
+        return False
+
+    return matches
+
+
+def get_data_by_attrs(soup, attrs, relationship=identity, transform=identity, default=np.nan, tag_type=None,
+                      use_re=False, unpack_data=False):
     data = list()
     for attr in attrs:
-        header = soup.find(tag_type, text=attr)
-        if header:
+        if use_re:
+            header = soup.find(tag_text_matches(attr))
+        else:
+            header = soup.find(tag_type, text=attr)
+        if header:  # TODO: try/except?
             tag = relationship(header)
             if tag and tag.string:
                 data.append(transform(tag.string))
         else:
             data.append(default)
+
+    if unpack_data:
+        return unpack(data)
+
     return data
-
-
