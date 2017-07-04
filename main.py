@@ -19,8 +19,8 @@ def main():
         try:
             soup, name = sc.find_school_princeton_page(input("Enter school name: "))
             st.store(soup, name, school_data)
-            print(school_data, '\n')
-        except:
+            # print(school_data, '\n')
+        except ValueError:  # any
             if input("Something went wrong. Do you want to quit and save the database? ") == 'y':
                 db['t1'] = school_data
                 db.close()

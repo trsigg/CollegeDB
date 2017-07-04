@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen, quote
+import numpy as np
 
 
 def get_soup(url):
@@ -18,9 +19,20 @@ def find_school_princeton_page(name):
         poss_heading = poss_heading.find_next('h2', class_='margin-top-none')
 
 
-def nth_sibling(tag, num):
-    i = 0
-    for sibling in tag.next_siblings:
-        i += 1
-        if i == num:
-            return sibling
+def identity(x):
+    return x
+
+
+def get_data_by_attrs(soup, attrs, relationship=identity, transform=identity, default=np.nan, tag_type=None):
+    data = list()
+    for attr in attrs:
+        header = soup.find(tag_type, text=attr)
+        if header:
+            tag = relationship(header)
+            if tag and tag.string:
+                data.append(transform(tag.string))
+        else:
+            data.append(default)
+    return data
+
+
