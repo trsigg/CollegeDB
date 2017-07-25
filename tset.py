@@ -1,12 +1,26 @@
-''' Applicants
-Average HS GPA
+''' Applicants, Average HS GPA
 Total Faculty
 with Terminal Degree
-Tuition (Out-of-State)
 Required Fees
 Average Cost for Books and Supplies
 On-Campus Room and Board
 Comprehensive Fee
+Registered Student Organizations
+Number of Honor Societies
+Number of Social Sororities
+Number of Religious Organizations
+Total Undergraduate Enrollment
+Foreign Countries Represented
+Starting Median Salary (Up to Bachelor's degree)
+Mid-Career Median Salary (Up to Bachelor's degree)
+Starting Median Salary (At least Bachelor's degree)
+Mid-Career Median Salary (At least Bachelor's degree)
+Average Freshman Total Need-Based Gift Aid
+Average Undergraduate Total Need-Based Gift Aid
+Average Need-Based Loan
+Average amount of loan debt per graduate
+Average amount of each freshman scholarship/grant package
+Tuition (Out-of-State if both alternatives are given)
 Student/Faculty
 Most frequent class size
 
@@ -28,6 +42,8 @@ Graduate in 6 years
 Undergrads living on campus
 First-Year Students living on campus
 Undergraduates who have borrowed
+Percent High Job Meaning
+Percent STEM
 {GPA Breakdown} '''
 
 import scrape as sc
@@ -37,6 +53,5 @@ import re
 import numpy as np
 from urllib.request import urlopen, quote
 import pandas as pd
-
 
 soup = sc.get_soup('https://www.princetonreview.com/schools/1023092/college/university-michigan--ann-arbor')

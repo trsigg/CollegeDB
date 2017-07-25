@@ -34,9 +34,9 @@ def unpack(obj):
         return [obj]
 
 
-def tag_text_matches(pattern):
+def tag_text_matches(pattern, tag_type=None):
     def matches(tag):
-        if tag and tag.string:
+        if tag and tag.string and (tag_type is None or tag.name == tag_type):
             return re.search(pattern, tag.string)
         return False
 
@@ -48,13 +48,16 @@ def get_data_by_attrs(soup, attrs, relationship=identity, transform=identity, de
     data = list()
     for attr in attrs:
         if use_re:
-            header = soup.find(tag_text_matches(attr))
+            header = soup.find(tag_text_matches(attr, tag_type))
         else:
             header = soup.find(tag_type, text=attr)
+
         if header:  # TODO: try/except?
             tag = relationship(header)
             if tag and tag.string:
                 data.append(transform(tag.string))
+            else:
+                data.append(default)
         else:
             data.append(default)
 

@@ -1,5 +1,6 @@
 import re
 import numpy as np
+import textwrap
 
 import scrape as sc
 
@@ -16,7 +17,7 @@ def clean_num(num_str):
     try:
         return float(cleaned_str)
     except ValueError:
-        print(num_str + " not parsed")  # TODO: add context in store (handle error there)?
+        print(num_str + " not parsed")  # TODO: add context in get_data_by_attrs (handle error there)?
         return np.nan
 
 
@@ -32,10 +33,21 @@ def store(soup, name, df):
 
     # Raw data(un-normalized)
     data.extend(sc.get_data_by_attrs(soup, ('Applicants', 'Average HS GPA', 'Total Faculty', 'with Terminal Degree',
-                                            'Tuition (Out-of-State)', 'Required Fees',
-                                            'Average Cost for Books and Supplies', 'On-Campus Room and Board',
-                                            'Comprehensive Fee'),
+                                            'Required Fees', 'Average Cost for Books and Supplies',
+                                            'On-Campus Room and Board', 'Comprehensive Fee',
+                                            'Registered Student Organizations', 'Number of Honor Societies',
+                                            'Number of Social Sororities', 'Number of Religious Organizations',
+                                            'Total Undergraduate Enrollment', 'Foreign Countries Represented'),
                                      relationship=lambda tag: tag.parent.find_next_sibling('div'), transform=clean_num))
+    data.extend(sc.get_data_by_attrs(soup, ('Starting Median Salary \(Up to', 'Mid-Career Median Salary \(Up to',
+                                            'Starting Median Salary \(At least', 'Mid-Career Median Salary \(At least',
+                                            'Average Freshman Total', 'Average Undergraduate Total', 'Average Need',
+                                            'Average amount of loan', 'Average amount of each'),
+                                     relationship=lambda tag: tag.find_next_sibling('div').contents[1],
+                                     transform=clean_num, use_re=True))
+    data.extend(sc.get_data_by_attrs(soup, (r'Tuition( \(Out|$)',),
+                                     relationship=lambda tag: tag.find_next_sibling('div'), transform=clean_num,
+                                     use_re=True, tag_type='div'))
     data.extend(sc.get_data_by_attrs(soup, ('Student/Faculty',),
                                      relationship=lambda tag: tag.parent.find_next_sibling('div'),
                                      transform=lambda txt: find_ratio(txt.split(':'))))
@@ -49,28 +61,20 @@ def store(soup, name, df):
                                             'Professors accessible rating', 'Academic rating', 'Financial Aid Rating',
                                             'Quality of life rating', 'Fire safety rating', 'Green rating',
                                             'Return on Investment (ROI) rating'),
-                                     relationship=lambda tag: tag.parent.find_next_sibling(class_='number-callout'),
-                                     transform=lambda txt: (clean_num(txt) - 60) / 39, tag_type='a'))
+                                     relationship=lambda tag: tag.parent.find_next_sibling('div').contents[0],
+                                     transform=lambda txt: (clean_num(txt.strip()[:2]) - 60) / 39, tag_type='a'))
 
 
     # Percentage data (0-1)
     data.extend(sc.get_data_by_attrs(soup, ('Acceptance Rate', 'Graduate in 4 years', 'Graduate in 5 years',
                                             'Graduate in 6 years', 'Undergrads living on campus',
                                             'First-Year Students living on campus'),
-                                     relationship=lambda tag: tag.parent.find_next_sibling('div'), transform=clean_num))
-        # Percent of undergrads with loans
-    data.extend(sc.get_data_by_attrs(soup, ('Undergraduates who have borrowed',),
+                                     relationship=lambda tag: tag.find_next_sibling('div'), transform=clean_num,
+                                     tag_type='div'))
+    data.extend(sc.get_data_by_attrs(soup, ('Undergraduates who have borrowed', 'Percent High Job Meaning',
+                                            'Percent STEM'),
                                      relationship=lambda tag: tag.find_next_sibling('div').contents[1],
                                      transform=clean_num, use_re=True))
 
-
-    # Get GPA distribution stats
-    dist = list()
-    gpa_header = soup.find(text='GPA Breakdown')
-    if gpa_header:
-        for tag in gpa_header.parent.parent.find_next_sibling('div').find_all(class_='col-xs-2 col-sm-2 bold'):
-            dist.append(clean_num(tag.string))  # TODO: Ensure existence?
-        data.append(dist)
-
-    print(list(enumerate(data)))
+    print(textwrap.fill(str(list(enumerate(data))), 180))
     # df.loc[name] = data
