@@ -10,6 +10,9 @@ def get_soup(url):
 
 
 def find_school_princeton_page(name):
+    if name == 'exit':
+        raise ValueError
+
     search_soup = get_soup('https://www.princetonreview.com/college-search?search=' + quote(name))
     poss_heading = search_soup.find('h2', class_='margin-top-none')
     while True:

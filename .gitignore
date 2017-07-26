@@ -14,7 +14,6 @@ tmp/
 *.pyc
 *.xml
 *.iml
-*.h5
 local.properties
 .classpath
 .settings/

@@ -43,8 +43,7 @@ Undergrads living on campus
 First-Year Students living on campus
 Undergraduates who have borrowed
 Percent High Job Meaning
-Percent STEM
-{GPA Breakdown} '''
+Percent STEM '''
 
 import scrape as sc
 import store as st
