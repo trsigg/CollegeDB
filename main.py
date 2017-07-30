@@ -17,7 +17,18 @@ def main():
                                               'Qual of life', 'Fire safety', 'Green', 'ROI r', 'Acceptance Rate',
                                               'Grad in 4 years', '...5 years', '...6 years', 'Udrgds on campus',
                                               '1st yr stdnts on campus', '% Udrgds who have borrowed',
-                                              '% High Job Meaning', '% STEM')) '''
+                                              '% High Job Meaning', '% STEM', 'Math', 'Phys', 'Chem', 'EarthSci',
+                                              'Geography', 'Ecology', 'MechEng', 'ElectricEng', 'Automation&Ctrl',
+                                              'TelecomEng', 'InstrmentSci&Tech', 'BiomedicalEng', 'CompSci', 'CivilEng',
+                                              'ChemEng', 'Materials Sci&Eng', 'NanoSci&Tech', 'EnergySci&Eng',
+                                              'EnviroSci&Eng', 'WaterResource', 'FoodSci&Tech', 'Biotech',
+                                              'AerospaceEng', 'MarineEng', 'TransportSci&Tech', 'Remote Sensing',
+                                              'Mining&MineralEng', 'MetalEng', 'BioSci', 'HumanBioSci', 'AgriSci',
+                                              'VeterinarySci', 'ClinicalMed', 'PubHlth','Dentstry&OralSci', 'Nursing'
+                                              'MedTech', 'PharmaSci', 'Econ', 'Stats', 'Law', 'PoliSci', 'Sociology',
+                                              'Education', 'Communication', 'Psychology', 'Business Administration',
+                                              'Finance', 'Mngmnt', 'PubAdmin', 'Hospitality&ToursmMngmnt',
+                                              'Lib&InfoScience')) '''
 
     db = pd.HDFStore('test1.h5')
 
@@ -27,14 +38,14 @@ def main():
 
     while True:
         try:
-            soup, name = sc.find_school_princeton_page(input("Enter school name: "))
+            soup, name = sc.find_school_princeton_page(input('Enter school name: '))
             st.store(soup, name, school_data)
             print(school_data.to_string(), '\n')
         except:
-            if input("Something went wrong. Do you want to quit and save the database? ") == 'y':
+            if input('Something went wrong. Do you want to quit and save the database? ') == 'y':
                 db['t2'] = school_data
                 db.close()
-                print("Database updated. Exiting.", db)
+                print('Database updated. Exiting.', db)
                 break
 
 

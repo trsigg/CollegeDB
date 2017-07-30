@@ -1,0 +1,98 @@
+Applicants, Average HS GPA
+Total Faculty
+with Terminal Degree
+Required Fees
+Average Cost for Books and Supplies
+On-Campus Room and Board
+Comprehensive Fee
+Registered Student Organizations
+Number of Honor Societies
+Number of Social Sororities
+Number of Religious Organizations
+Total Undergraduate Enrollment
+Foreign Countries Represented
+Starting Median Salary (Up to Bachelor's degree)
+Mid-Career Median Salary (Up to Bachelor's degree)
+Starting Median Salary (At least Bachelor's degree)
+Mid-Career Median Salary (At least Bachelor's degree)
+Average Freshman Total Need-Based Gift Aid
+Average Undergraduate Total Need-Based Gift Aid
+Average Need-Based Loan
+Average amount of loan debt per graduate
+Average amount of each freshman scholarship/grant package
+Tuition (Out-of-State if both alternatives are given)
+Student/Faculty
+Most frequent class size
+
+Most frequent lab / sub section size
+
+Admissions selectivity rating
+Professors interesting rating
+Professors accessible rating
+Academic rating
+Financial Aid Rating
+Quality of life rating
+Fire safety rating
+Green rating
+Return on Investment (ROI) rating
+Acceptance Rate
+Graduate in 4 years
+Graduate in 5 years
+Graduate in 6 years
+Undergrads living on campus
+First-Year Students living on campus
+Undergraduates who have borrowed
+Percent High Job Meaning
+Percent STEM    ---------------------------------------- Shanghai ------------------------------------------------------
+Mathematics
+Physics
+Chemistry
+Earth Sciences
+Geography
+Ecology
+Mechanical Engineering
+Electrical & Electronic Engineering
+Automation & Control
+Telecommunication Engineering
+Instruments Science & Technology
+Biomedical Engineering
+Computer Science & Engineering
+Civil Engineering
+Chemical Engineering
+Materials Science & Engineering
+Nanoscience & Nanotechnology
+Energy Science & Engineering
+Environmental Science & Engineering
+Water Resources
+Food Science & Technology
+Biotechnology
+Aerospace Engineering
+Marine/Ocean Engineering
+Transportation Science & Technology
+Remote Sensing
+Mining & Mineral Engineering
+Metallurgical Engineering
+Biological Sciences
+Human Biological Sciences
+Agricultural Sciences
+Veterinary Sciences
+Clinical Medicine
+Public Health
+Dentistry & Oral Sciences
+Nursing
+Medical Technology
+Pharmacy & Pharmaceutical Sciences
+Economics
+Statistics
+Law
+Political Sciences
+Sociology
+Education
+Communication
+Psychology
+Business Administration
+Finance
+Management
+Public Administration
+Hospitality & Tourism Management
+Library & Information Science

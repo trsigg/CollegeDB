@@ -5,6 +5,8 @@
 *.pydevproject
 .project
 .metadata
+Notes/
+Shanghai Rankings/
 bin/
 tmp/
 *.tmp
@@ -217,3 +219,4 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+tset.py
