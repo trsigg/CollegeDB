@@ -5,22 +5,35 @@ import re
 
 
 def get_soup(url):
-    #  print(url)
+    # print(url)
     return BeautifulSoup(urlopen(url), 'lxml')
 
 
 def find_school_princeton_page(name):
-    if name == 'exit':
-        raise ValueError
+    soup = get_soup('https://www.princetonreview.com/college-search?search=' + quote(name.replace('The ', '')))
+    prompt_str = 'Does %s match ' % name
 
-    search_soup = get_soup('https://www.princetonreview.com/college-search?search=' + quote(name))
-    poss_heading = search_soup.find('h2', class_='margin-top-none')
-    while True:
-        poss_link = poss_heading.a
-        poss_name = poss_link.string
-        if input("Is %s the school you are looking for? " % poss_name) == 'y':
-            return get_soup('https://www.princetonreview.com' + poss_link['href']), poss_name
-        poss_heading = poss_heading.find_next('h2', class_='margin-top-none')
+    if soup.find(class_='school-headline'):  # redirected straight to school page
+        print(name + ' added.')
+        return soup
+    else:  # Page returned is search page
+        for poss_heading in soup('h2', class_='margin-top-none'):
+            poss_link = poss_heading.a
+            poss_name = poss_link.string
+
+            if poss_name == name:
+                print(name + ' added.')
+                return get_soup('https://www.princetonreview.com' + poss_link['href'])
+            elif input(prompt_str + poss_name + '? ') == 'y':
+                return get_soup('https://www.princetonreview.com' + poss_link['href'])
+            else:
+                prompt_str = '  ...'
+
+        query = input('No more choices available for %s. Enter alternative query: ' % name)
+        if query == 'n':
+            return None
+        else:
+            return find_school_princeton_page(query)
 
 
 def identity(x):

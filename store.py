@@ -77,4 +77,4 @@ def store(soup, name, df):
                                      transform=clean_num, use_re=True))
 
     # print(textwrap.fill(str(list(enumerate(data))), 180))
-    df.loc[name] = data
+    df.loc[name, :'% STEM'] = data

@@ -53,8 +53,7 @@ Ecology
 Mechanical Engineering
 Electrical & Electronic Engineering
 Automation & Control
-Telecommunication Engineering
-Instruments Science & Technology
+Telecommunication Engineering -
 Biomedical Engineering
 Computer Science & Engineering
 Civil Engineering
@@ -63,36 +62,23 @@ Materials Science & Engineering
 Nanoscience & Nanotechnology
 Energy Science & Engineering
 Environmental Science & Engineering
-Water Resources
-Food Science & Technology
+Water Resources -
 Biotechnology
 Aerospace Engineering
 Marine/Ocean Engineering
 Transportation Science & Technology
-Remote Sensing
-Mining & Mineral Engineering
-Metallurgical Engineering
+Remote Sensing --
 Biological Sciences
-Human Biological Sciences
-Agricultural Sciences
-Veterinary Sciences
+Human Biological Sciences --
 Clinical Medicine
-Public Health
-Dentistry & Oral Sciences
-Nursing
+Public Health --
 Medical Technology
 Pharmacy & Pharmaceutical Sciences
 Economics
-Statistics
-Law
+Statistics -
 Political Sciences
 Sociology
-Education
-Communication
-Psychology
-Business Administration
+Education -
+Psychology -
 Finance
-Management
-Public Administration
-Hospitality & Tourism Management
-Library & Information Science
+Management ---
