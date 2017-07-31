@@ -63,6 +63,6 @@ def backup(destination='bkp2'):
 
 
 # do the thing
-disp()
+backup()
 
 print('Done')
