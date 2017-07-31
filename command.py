@@ -51,6 +51,17 @@ def disp():
 
     db.close()
 
-disp()
+
+def backup(destination='bkp2'):
+    db = pd.HDFStore('database.h5')
+
+    if input('Backup <store> to <%s>? ' % destination) == 'y':
+        db[destination] = db['store']
+
+    db.close()
+
+
+# do the thing
+
 
 print('Done')
