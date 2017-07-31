@@ -7,8 +7,8 @@ import store as st
 
 
 def main():
-    ''' 'math', 'phys',  '''
-    subjects = ('chem', 'earth', 'geo', 'eco', 'mechEng', 'electric', 'automation', 'telecom', 'bioMed',
+    ''' 'math', 'phys', 'chem', 'earth', 'geo', 'eco',  '''
+    subjects = ('mechEng', 'electric', 'automation', 'telecom', 'bioMed',
                 'compSci', 'civil', 'chemEng', 'materialSci', 'nano', 'energy', 'enviro', 'water', 'biotech',
                 'aerospace', 'marineEng', 'transport', 'remoteSensing', 'bio', 'humanBio', 'clinicalMed', 'pubHlth',
                 'medTech', 'pharma', 'econ', 'stats', 'poliSci', 'sociology', 'edu', 'psych', 'finance', 'mngmnt')

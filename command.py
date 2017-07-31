@@ -47,7 +47,8 @@ def disp():
     db = pd.HDFStore('database.h5')
 
     print('Store:\n', db['store'].to_string())
-    print('Backup:\n', db['bkp'].to_string())
+    if input('Display backup? ') == 'y':
+        print('Backup:\n', db['bkp'].to_string())
 
     db.close()
 
