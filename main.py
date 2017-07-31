@@ -7,7 +7,8 @@ import store as st
 
 
 def main():
-    subjects = ('math', 'phys', 'chem', 'earth', 'geo', 'eco', 'mechEng', 'electric', 'automation', 'telecom', 'bioMed',
+    ''' 'math', 'phys',  '''
+    subjects = ('chem', 'earth', 'geo', 'eco', 'mechEng', 'electric', 'automation', 'telecom', 'bioMed',
                 'compSci', 'civil', 'chemEng', 'materialSci', 'nano', 'energy', 'enviro', 'water', 'biotech',
                 'aerospace', 'marineEng', 'transport', 'remoteSensing', 'bio', 'humanBio', 'clinicalMed', 'pubHlth',
                 'medTech', 'pharma', 'econ', 'stats', 'poliSci', 'sociology', 'edu', 'psych', 'finance', 'mngmnt')
@@ -18,8 +19,9 @@ def main():
 
     school_data = db['store']
 
-    def get_user_action():
+    def get_user_action(msg):
         print(school_data.to_string())
+        print(msg)
         saved = False
 
         if input('Save data? ') != 'n':
@@ -40,8 +42,7 @@ def main():
             shanghai = sc.get_soup(r'file:\\' + abspath('Shanghai Rankings\%s.html' % sub))
             table = shanghai.find('table', id='UniversityRanking')('tr', limit=50)[1:]
         except:
-            print('Failed.')
-            get_user_action()
+            get_user_action('Failed.')
 
         for row in table:
             data = row('td')
@@ -58,19 +59,18 @@ def main():
                     print('%s (%s) added.' % (name, country))
                 elif name not in school_data.index:
                     soup = sc.find_school_princeton_page(name)
+
                     if soup:
                         st.store(soup, name, school_data)
                     else:
-                        print('Match for %s not found.' % name)
-                        get_user_action()
+                        get_user_action('Match for %s not found.' % name)
 
                 try:
                     school_data.loc[name][sub] = float(data[3].string)
                 except ValueError:
-                    print('Failed to store subject score for %s.' % name)
-                    get_user_action()
+                    get_user_action('Failed to store subject score for %s.' % name)
 
-        get_user_action()
+        get_user_action('End of category reached.')
 
 
 main()

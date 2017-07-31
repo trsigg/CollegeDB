@@ -9,8 +9,15 @@ def get_soup(url):
     return BeautifulSoup(urlopen(url), 'lxml')
 
 
+def format_name(name):
+    return re.sub('(, )|(--)|( - )|( at )', ' ',
+                  re.sub('University of California(, )|(--)', 'uc ',
+                         name.replace('The ', '')))
+
+
 def find_school_princeton_page(name):
-    soup = get_soup('https://www.princetonreview.com/college-search?search=' + quote(name.replace('The ', '')))
+    formatted_name = format_name(name)
+    soup = get_soup('https://www.princetonreview.com/college-search?search=' + quote(formatted_name))
     prompt_str = 'Does %s match ' % name
 
     if soup.find(class_='school-headline'):  # redirected straight to school page
@@ -21,7 +28,7 @@ def find_school_princeton_page(name):
             poss_link = poss_heading.a
             poss_name = poss_link.string
 
-            if poss_name == name:
+            if format_name(poss_name) == formatted_name:
                 print(name + ' added.')
                 return get_soup('https://www.princetonreview.com' + poss_link['href'])
             elif input(prompt_str + poss_name + '? ') == 'y':

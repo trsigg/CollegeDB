@@ -22,9 +22,9 @@ def clean_num(num_str):
 
 
 def find_ratio(num_list):
-    if len(num_list) > 1:
+    try:
         return float(num_list[0]) / float(num_list[1])
-    else:
+    except:
         return np.nan
 
 
@@ -53,7 +53,8 @@ def store(soup, name, df):
                                      transform=lambda txt: find_ratio(txt.split(':'))))
     data.extend(sc.get_data_by_attrs(soup, ('Most frequent class size', 'Most frequent lab / sub section size'),
                                      relationship=lambda tag: tag.parent.find_next_sibling('div'),
-                                     transform=lambda txt: map(clean_num, txt.split(' - ')), unpack_data=True))
+                                     transform=lambda txt: map(clean_num, txt.split(' - ')), unpack_data=True,
+                                     default=(np.nan, np.nan)))
 
 
     # Ratings data (60-99)
