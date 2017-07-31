@@ -8,10 +8,10 @@ import store as st
 
 def main():
     ''' 'math', 'phys', 'chem', 'earth', 'geo', 'eco', 'mechEng', 'electric', 'automation', 'telecom', 'bioMed',
-    'compSci', 'civil',  '''
-    subjects = ('chemEng', 'materialSci', 'nano', 'energy', 'enviro', 'water', 'biotech',
-                'aerospace', 'marineEng', 'transport', 'remoteSensing', 'bio', 'humanBio', 'clinicalMed', 'pubHlth',
-                'medTech', 'pharma', 'econ', 'stats', 'poliSci', 'sociology', 'edu', 'psych', 'finance', 'mngmnt')
+        'compSci', 'civil', 'chemEng', 'materialSci', 'nano', 'energy', 'enviro', 'water', 'biotech', 'aerospace',
+        'marineEng', 'transport', 'remoteSensing', 'bio', 'humanBio', 'clinicalMed', 'pubHlth', 'medTech', 'pharma',
+        'econ', 'stats', 'poliSci',  '''
+    subjects = ('sociology', 'edu', 'psych', 'finance', 'mngmnt')
 
     db = pd.HDFStore('database.h5')
 
