@@ -43,10 +43,39 @@ def reset(new):
     db.close()
 
 
+def reset2():
+    db = pd.HDFStore('database.h5')
+
+    template = pd.DataFrame(None, columns=('SCORE', '%Faculty w/ Term Degree', 'Req Fees', 'Avg Supply Cst',
+                                           'On-Campus Rm&Brd Cst', 'Stdnt Orgs', 'Honor Socs', 'Social Sororities',
+                                           'Countries Represented','Init Med Sal (<=B)', 'Mid-Car Med Sal (<=B)',
+                                           'Init Med Sal (>=B)', 'Mid-Car Med Sal (>=B)', 'Avg Fresh NBG',
+                                           'Avg Udrgd NBG', 'Avg NBL', 'Avg loan debt', 'Avg fresh scholar/grnt pkg',
+                                           'Tuition', 'Stdnt/Faculty', 'MstFreq class size (low)', 'Mfcs (high)',
+                                           'Selectivity r', 'Prof interest', 'Prof accessible', 'Academic r',
+                                           'FinAid r', 'Qual of life', 'Green', 'ROI r', '% Udrgds who have borrowed',
+                                           '% High Job Meaning', '% STEM', 'math', 'phys', 'chem', 'earth', 'geo',
+                                           'eco', 'mechEng', 'electric', 'automation', 'telecom', 'bioMed', 'compSci',
+                                           'civil', 'chemEng', 'materialSci', 'nano', 'energy', 'enviro', 'water',
+                                           'biotech', 'aerospace', 'marineEng', 'transport', 'remoteSensing', 'bio',
+                                           'humanBio', 'clinicalMed', 'pubHlth', 'medTech', 'pharma', 'econ', 'stats',
+                                           'poliSci', 'sociology', 'edu', 'psych', 'finance', 'mngmnt'))
+
+    if input('Are you sure you want to overwrite scoreing db? ') == 'y':
+        db['scoring'] = template
+
+    db.close()
+
+
 def disp():
     db = pd.HDFStore('database.h5')
 
-    print('Store:\n', db['store'].to_string())
+    print(db)
+
+    if input('\nDisplay data? ') == 'y':
+        print('Store:\n', db['store'].to_string())
+    if input('Display scoring? ') == 'y':
+        print('Backup:\n', db['scoring'].to_string())
     if input('Display backup? ') == 'y':
         print('Backup:\n', db['bkp'].to_string())
 
@@ -63,6 +92,6 @@ def backup(destination='bkp2'):
 
 
 # do the thing
-backup()
+disp()
 
 print('Done')

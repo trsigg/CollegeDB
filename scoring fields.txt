@@ -1,0 +1,70 @@
+%Faculty w/ Term Degree
+Req Fees
+Avg Supply Cst
+On-Campus Rm&Brd Cst
+Stdnt Orgs
+Honor Socs
+Social Sororities
+Countries Represented
+Init Med Sal (<=B)
+Mid-Car Med Sal (<=B)
+Init Med Sal (>=B)
+Mid-Car Med Sal (>=B)
+Avg Fresh NBG
+Avg Udrgd NBG
+Avg NBL
+Avg loan debt
+Avg fresh scholar/grnt pkg
+Tuition
+Stdnt/Faculty
+MstFreq class size (low)
+Mfcs (high)
+Selectivity r
+Prof interest
+Prof accessible
+Academic r
+FinAid r
+Qual of life
+Green
+ROI r
+% Udrgds who have borrowed
+% High Job Meaning
+% STEM
+math
+phys
+chem
+earth
+geo
+eco
+mechEng
+electric
+automation
+telecom
+bioMed
+compSci
+civil
+chemEng
+materialSci
+nano
+energy
+enviro
+water
+biotech
+aerospace
+marineEng
+transport
+remoteSensing
+bio
+humanBio
+clinicalMed
+pubHlth
+medTech
+pharma
+econ
+stats
+poliSci
+sociology
+edu
+psych
+finance
+mngmnt
